@@ -1,3 +1,4 @@
+require "omniauth-facebook"
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,6 +7,10 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   config.secret_key = 'aed2d717e23f187e0ecee989db123f4f91c835875fa29f34fe6cc8e64224c957d62e398fc73f9fa8f16b06a1788b6add8997a899f5a3a32ed2fe06e667c2b288'
 
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
+  
+  config.omniauth :facebook, "451351904965058", "cb8619cb43da5d62b708be96791ec22d"
+  config.omniauth :twitter, "D7YCNMjQmCG5YPcgL1fMg", "rYhMwdwFkBzvaS65o4710E67HXlzsBo6mmtHk4gihs"
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class

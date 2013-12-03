@@ -16,6 +16,11 @@ gem 'devise', '~> 3.2.2'
 #Adds font-awesome to our app
 gem "font-awesome-rails"
 
+#Omniauth para Facebook y Twitter
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
