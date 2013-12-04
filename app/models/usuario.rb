@@ -9,6 +9,10 @@ class Usuario < ActiveRecord::Base
             length: {in: 5..10, too_short: "Tiene que tener al menos 5 caracteres", too_long: "Puede tener máximo 10 caracteres"},
             format: {with: /([A-Za-z0-9\-\_]+)/, message: "Tu username puede sólo contenter letras, números y guiones"}
 
+  has_many :posts
+  def email_required?
+    false
+  end
   def self.find_by_facebook_oauth(auth,usuario=nil)
   	usuario = Usuario.where(provider: auth[:provider], uid: auth[:uid]).first
 

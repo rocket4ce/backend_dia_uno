@@ -21,6 +21,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+#Gemas de desarrollo
+group :test do
+	gem "shoulda"
+end
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

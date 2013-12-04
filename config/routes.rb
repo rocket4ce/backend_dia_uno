@@ -1,8 +1,12 @@
 EasyDesignDev::Application.routes.draw do
   
-  get "welcome/index"
-  devise_for :usuarios, path_names: {sign_in: "login", sign_out: "logout", sign_up: "registrarse"}, path: ""
+  resources :attachments
 
+  resources :posts
+
+  get "welcome/index"
+  devise_for :usuarios, controllers: {omniauth_callbacks: "omniauth_callbacks",
+                                      registrations: "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
