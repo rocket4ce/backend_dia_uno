@@ -10,8 +10,18 @@ class Usuario < ActiveRecord::Base
             format: {with: /([A-Za-z0-9\-\_]+)/, message: "Tu username puede sólo contenter letras, números y guiones"}
 
   has_many :posts
+  has_many :friendships
+  has_many :follows, through: :friendships, source: :usuario
+  has_many :followers_relationship, foreign_key: "usuario_id", class_name: "Friendship"
+  has_many :followers, through: :followers_relationship, source: :friend
   def email_required?
     false
+  end
+  def follow!(amigo_id)
+    friendships.create!(friend_id: amigo_id)
+  end
+  def can_follow?(amigo)
+    not amigo.id == self.id or friendships.where(friend_id: amigo.id).size > 0
   end
   def self.find_by_facebook_oauth(auth,usuario=nil)
   	usuario = Usuario.where(provider: auth[:provider], uid: auth[:uid]).first

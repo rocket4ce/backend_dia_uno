@@ -21,10 +21,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-#Gemas de desarrollo
-group :test do
-	gem "shoulda"
-end
+#Public activity para manejar el feed de noticias
+gem 'public_activity'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

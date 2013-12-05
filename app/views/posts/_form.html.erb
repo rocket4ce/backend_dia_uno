@@ -1,29 +1,30 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <%= form_for(@post) do |f| %>
+        <% if @post.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :titulo %><br>
+          <%= f.text_field :titulo, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :photo %>
+          <%= f.file_field :photo, class: "form-control" %>
+        </div>
+        <div id="wysi-toolbar"></div>
+        <div class="form-group">
+          <%= f.label :contenido %><br>
+          <%= f.text_area :contenido, style:"width:100%;height:200px;", class: "form-control", id:"wysi-editor" %>
+        </div>
+        <div class="text-center">
+          <%= f.submit "Subir Post", class: "form-control btn btn-info" %>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :titulo %><br>
-    <%= f.text_field :titulo %>
-  </div>
-  <div class="field">
-    <%= f.label :contenido %><br>
-    <%= f.text_area :contenido %>
-  </div>
-  <div class="field">
-    <%= f.label :extension %><br>
-    <%= f.text_field :extension %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
