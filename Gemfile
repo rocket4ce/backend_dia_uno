@@ -24,6 +24,9 @@ gem 'omniauth-twitter'
 #Public activity para manejar el feed de noticias
 gem 'public_activity'
 
+#ActiveMerchant para manejar los pagos
+gem 'activemerchant'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

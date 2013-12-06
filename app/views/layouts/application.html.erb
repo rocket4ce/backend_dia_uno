@@ -18,9 +18,18 @@
 				</li>
 				<% if usuario_signed_in? %>
 					<li>
+						<%= link_to "Mi carrito", carrito_path %>
+					</li>
+					<li>
+						<%= link_to "Mis compras", compras_path %>
+					</li>
+					<li>
                     	<%= link_to "Editar Perfil", edit_usuario_registration_path(current_usuario)%>
                     </li>
 					<li><%= link_to "Cerrar sesión", destroy_usuario_session_path, method: :delete %></li>
+					<li>
+						<%= link_to "Mi perfil", current_usuario %>
+					</li>
 				<%else %>
 					<li>
                     	<%= link_to "Ingresar", new_usuario_session_path%>
@@ -32,8 +41,13 @@
 			</ul>
 		</nav>
 	</header>
-
-	<%= yield %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 center-block no-float">
+		<%= yield %>
+	</div>
+  </div>
+</div>
 	
 </body>
 </html>

@@ -20,7 +20,10 @@ class AttachmentsController < ApplicationController
   # GET /attachments/1/edit
   def edit
   end
-
+  def get_form
+    @attachment = Attachment.new
+    render partial: "form"
+  end
   # POST /attachments
   # POST /attachments.json
   def create

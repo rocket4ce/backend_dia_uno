@@ -10,18 +10,27 @@ class Usuario < ActiveRecord::Base
             format: {with: /([A-Za-z0-9\-\_]+)/, message: "Tu username puede sólo contenter letras, números y guiones"}
 
   has_many :posts
-  has_many :friendships
-  has_many :follows, through: :friendships, source: :usuario
-  has_many :followers_relationship, foreign_key: "usuario_id", class_name: "Friendship"
-  has_many :followers, through: :followers_relationship, source: :friend
-  def email_required?
-    false
-  end
+  has_many :payments  
+  has_many :friendships, foreign_key: "usuario_id", dependent: :destroy
+
+  has_many :follows, through: :friendships, source: :friend
+
+  has_many :followers_friendships, class_name: "Friendship", foreign_key: "friend_id"
+
+  has_many :followers, through: :followers_friendships, source: :usuario
+  has_many :transactions
   def follow!(amigo_id)
     friendships.create!(friend_id: amigo_id)
   end
-  def can_follow?(amigo)
-    not amigo.id == self.id or friendships.where(friend_id: amigo.id).size > 0
+  def costo_compra_pendiente
+    payments.where(estado: 1).joins("INNER JOIN posts on posts.id == payments.post_id").sum("costo")
+  end
+  
+  def can_follow?(amigo_id)
+    not amigo_id == self.id or friendships.where(friend_id: amigo_id).size > 0
+  end
+  def email_required?
+    false
   end
   def self.find_by_facebook_oauth(auth,usuario=nil)
   	usuario = Usuario.where(provider: auth[:provider], uid: auth[:uid]).first

@@ -1,19 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+	<h1><%= @post.titulo.capitalize %></h1>	
+	<%= @post.contenido.html_safe %>
+	<%= render "payments/form", payment: Payment.new, post: @post %>
+</div>
+<div class="text-right">
+	<% if @post.usuario and usuario_signed_in? and @post.usuario.id == current_usuario.id %>
+	<%= link_to 'Editar', edit_post_path(@post) %> |
+	<%= link_to 'Eliminar', @post, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	<%end%>
+	<%= link_to 'Back', posts_path %>	
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @post.titulo %>
-</p>
+</div>
+<% if @post.usuario and usuario_signed_in? and @post.usuario.id == current_usuario.id %>
+	<button class="btn btn-warning" data-id="<%= @post.id %>" id="add_attachment">Agregar attachment</button>
+	<div id="add_attachments"></div>
+<%end%>
 
-<p>
-  <strong>Contenido:</strong>
-  <%= @post.contenido %>
-</p>
-
-<p>
-  <strong>Extension:</strong>
-  <%= @post.extension %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

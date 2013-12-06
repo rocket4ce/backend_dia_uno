@@ -1,10 +1,16 @@
 EasyDesignDev::Application.routes.draw do
-  
-  resources :attachments
 
+  get "payments/express"
+  get "payments/checkout"
+  get "transactions/checkout"
+  get "attachments/get_form"
+  resources :attachments
+  resources :payments
   resources :posts
 
   get "welcome/index"
+  get "/carrito", to: "payments#carrito"
+  get "/compras", to: "payments#compras"
   devise_for :usuarios, controllers: {omniauth_callbacks: "omniauth_callbacks",
                                       registrations: "registrations"}
   resources :usuario

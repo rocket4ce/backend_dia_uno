@@ -8,4 +8,14 @@ $(document).on "ready page:load", ->
 			toolbar: "wysi-toolbar"
 			parserRules: wysihtml5ParserRules
 		editor = new wysihtml5.Editor("wysi-editor",data)
+	$("#add_attachment").on "click", ->
+		post_id = $(this).data "id"
+		$.ajax "/attachments/get_form",
+			type: "GET"
+			success: (data)->
+				$("#add_attachments").append data
+				$(".post_id").html("<input type='hidden' name='attachment[post_id]' value='"+post_id+"'>")
+			error: (err)->
+				console.log err
+	
 	

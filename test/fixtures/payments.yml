@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario_id: 
+  post_id: 
+  estado: 1
+  expres_token: MyString
+  express_payer: MyString
+
+two:
+  usuario_id: 
+  post_id: 
+  estado: 1
+  expres_token: MyString
+  express_payer: MyString

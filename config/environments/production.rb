@@ -77,4 +77,15 @@ EasyDesignDev::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    paypal_options = {
+      :login => "tu_login_aqui",
+      :password => "tu_password_aqui",
+      :signature => "tu_firma_aqui"
+    }
+    
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

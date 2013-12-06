@@ -28,4 +28,14 @@ EasyDesignDev::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.after_initialize do
+    paypal_options = {
+      :login => "tu_login",
+      :password => "tu_password",
+      :signature => "tu_firma"
+    }
+    ActiveMerchant::Billing::Base.mode = :test
+    
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

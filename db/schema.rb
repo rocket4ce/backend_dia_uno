@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205211511) do
+ActiveRecord::Schema.define(version: 20131206195912) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20131205211511) do
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
   add_index "friendships", ["usuario_id"], name: "index_friendships_on_usuario_id"
 
+  create_table "payments", force: true do |t|
+    t.integer  "usuario_id"
+    t.integer  "post_id"
+    t.integer  "estado"
+    t.string   "expres_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payments", ["post_id"], name: "index_payments_on_post_id"
+  add_index "payments", ["usuario_id"], name: "index_payments_on_usuario_id"
+
   create_table "posts", force: true do |t|
     t.string   "titulo"
     t.text     "contenido"
@@ -57,9 +69,23 @@ ActiveRecord::Schema.define(version: 20131205211511) do
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "costo",      precision: 10, scale: 3
   end
 
   add_index "posts", ["usuario_id"], name: "index_posts_on_usuario_id"
+
+  create_table "transactions", force: true do |t|
+    t.string   "token"
+    t.string   "payerid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ip_address"
+    t.integer  "usuario_id"
+    t.string   "response"
+    t.string   "estado"
+  end
+
+  add_index "transactions", ["usuario_id"], name: "index_transactions_on_usuario_id"
 
   create_table "usuarios", force: true do |t|
     t.string   "email",                  default: "", null: false

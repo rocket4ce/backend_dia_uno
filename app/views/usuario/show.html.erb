@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-md-6 center-block no-float">
     	<div class="row">
-    		<h2><%= @usuario.nombre.capitalize %></h2>
-    		<% if usuario_signed_in? and current_usuario.can_follow?(@usuario) %>
+    		<h2><%= @usuario.username.capitalize %></h2>
+    		<% if usuario_signed_in? and current_usuario.can_follow?(@usuario.id) %>
     			<button class="btn btn-info" id='follow_btn' data-friend="<%= @usuario.id %>"> <i class="fa fa-user"></i> Follow</button>
     		<%end%>
     	</div>
