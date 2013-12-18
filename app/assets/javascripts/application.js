@@ -10,8 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require socketio
+//= require realtime
 //= require jquery
 //= require jquery_ujs
+//= require jquery-tmpl
 //= require turbolinks
 //= require bootstrap
 //= require advanced

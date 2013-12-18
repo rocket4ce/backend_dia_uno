@@ -16,6 +16,9 @@ gem 'devise', '~> 3.2.2'
 #Adds font-awesome to our app
 gem "font-awesome-rails"
 
+gem 'redis'
+gem 'jquery-tmpl-rails'
+
 #Omniauth para Facebook y Twitter
 gem 'omniauth'
 gem 'omniauth-facebook'

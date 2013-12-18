@@ -30,9 +30,9 @@ EasyDesignDev::Application.configure do
   config.assets.debug = true
   config.after_initialize do
     paypal_options = {
-      :login => "tu_login",
-      :password => "tu_password",
-      :signature => "tu_firma"
+      :login => "cruzazul_magistroni-facilitator_api1.hotmail.com",
+      :password => "1373425621",
+      :signature => "AFcWxV21C7fd0v3bYYYRCpSSRl31AzdpfBkQ0lSKbQKlYGiITuVHNvX4"
     }
     ActiveMerchant::Billing::Base.mode = :test
     

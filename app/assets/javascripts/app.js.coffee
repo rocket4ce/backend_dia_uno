@@ -1,5 +1,7 @@
 $ = jQuery
 $(document).on "ready page:load", ->	
+	myapp.connect()
+	console.log myapp
 	$("#follow_btn").on "click", ->
 		friend_id = $(this).data("friend")
 		boton = $(this)
